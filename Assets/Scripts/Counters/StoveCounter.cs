@@ -118,6 +118,23 @@ public class StoveCounter : BaseCounter, IHasProgress
             if (player.HasKitchenObject())
             {
                 //player is carrying something
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
+                    //player is holding a Plate
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                        state = State.Idle;//init stove
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                        {
+                            state = this.state
+                        });
+                        OnProgessChanged?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs
+                        {
+                            progressNormalized = 0f
+                        });
+                    }
+                }
             }
             else
             {
@@ -135,6 +152,7 @@ public class StoveCounter : BaseCounter, IHasProgress
             }
         }
     }
+
     private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO)
     {
         FryingRecipeSO fryingRecipeSO = GetFryingRecipeSOWithInput(inputKitchenObjectSO);
