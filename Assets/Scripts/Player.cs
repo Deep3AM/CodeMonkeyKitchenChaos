@@ -35,11 +35,13 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     }
     private void GameInput_OnInteractionAlternateAction(object sender, EventArgs e)
     {
+        if (!KitchenGameManager.Instance.IsGamePlaying()) return;
         selectedCounter?.InteractAlternate(this);
     }
 
     private void GameInput_OnInteractionAction(object sender, EventArgs e)
     {
+        if (!KitchenGameManager.Instance.IsGamePlaying()) return;
         selectedCounter?.Interact(this);
     }
 
@@ -136,7 +138,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
-        if(kitchenObject != null)
+        if (kitchenObject != null)
         {
             OnPickedSomething?.Invoke(this, EventArgs.Empty);
         }
