@@ -18,7 +18,7 @@ public class PlatesCounter : BaseCounter
         if (spawnPlateTimer > spawnPlateTimerMax)
         {
             spawnPlateTimer = 0f;
-            if (platesSpawnedAmount < platesSpawnedAmountMax)
+            if (KitchenGameManager.Instance.IsGamePlaying() && platesSpawnedAmount < platesSpawnedAmountMax)
             {
                 platesSpawnedAmount++;
                 OnPlateSpawned?.Invoke(this, EventArgs.Empty);
@@ -27,9 +27,9 @@ public class PlatesCounter : BaseCounter
     }
     public override void Interact(Player player)
     {
-        if(!player.HasKitchenObject())
+        if (!player.HasKitchenObject())
         {
-            if(platesSpawnedAmount>0)
+            if (platesSpawnedAmount > 0)
             {
                 platesSpawnedAmount--;
                 KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
