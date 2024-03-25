@@ -8,11 +8,11 @@ public class StoveBurnWarningUI : MonoBehaviour
     [SerializeField] private StoveCounter stoveCounter;
     private void Start()
     {
-        stoveCounter.OnProgessChanged += StoveCounter_OnProgressChanged;
+        stoveCounter.OnProgressChanged += StoveCounter_OnProgressChanged;
         Hide();
     }
 
-    private void StoveCounter_OnProgressChanged(object sender, IHasProgress.OnProgressChangeEventArgs e)
+    private void StoveCounter_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
         float burnShowProgressAmount = .5f;
         bool show = stoveCounter.IsFried() && e.progressNormalized >= burnShowProgressAmount;

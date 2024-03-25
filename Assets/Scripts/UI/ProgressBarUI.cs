@@ -16,12 +16,12 @@ public class ProgressBarUI : MonoBehaviour
         {
             Debug.LogError("Game Object" + hasProgressGameObject + " does not have a component that implements IHasProgress!");
         }
-        hasProgress.OnProgessChanged += HasProgress_OnProgressChanged;
+        hasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
         barImage.fillAmount = 0;
         Hide();
     }
 
-    private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangeEventArgs e)
+    private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
         barImage.fillAmount = e.progressNormalized;
         if(e.progressNormalized==0f||e.progressNormalized==1f)

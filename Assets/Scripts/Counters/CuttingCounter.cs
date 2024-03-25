@@ -11,7 +11,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
     {
         OnAnyCut = null;
     }
-    public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgessChanged;
+    public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler OnCut;
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOArray;
     private int cuttingProgress;
@@ -65,7 +65,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
     private void InteractLogicPlaceObjectOnCounterClientRpc()
     {
         cuttingProgress = 0;
-        OnProgessChanged?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs
+        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
         {
             progressNormalized = 0f
         });
@@ -90,7 +90,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
         OnCut?.Invoke(this, EventArgs.Empty);
         OnAnyCut?.Invoke(this, EventArgs.Empty);
         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-        OnProgessChanged?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs
+        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
         {
             progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
         });
