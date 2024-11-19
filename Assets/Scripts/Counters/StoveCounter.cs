@@ -136,7 +136,7 @@ public class StoveCounter : BaseCounter, IHasProgress
             {
                 // Player is carrying something
                 if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
-                {
+                {       
                     // Player carrying something that can be Fried
                     KitchenObject kitchenObject = player.GetKitchenObject();
                     kitchenObject.SetKitchenObjectParent(this);
