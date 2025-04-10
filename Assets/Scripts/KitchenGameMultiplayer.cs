@@ -13,6 +13,7 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     public event EventHandler OnFailedToJoinGame;
     public event EventHandler OnPlayerDataNetworkListChanged;
     [SerializeField] private KitchenObjectListSO kitchenObjectListSO;
+    [SerializeField] private List<Color> playerColorList;
     private NetworkList<PlayerData> playerDataNetworkList;
     private void Awake()
     {
@@ -117,5 +118,9 @@ public class KitchenGameMultiplayer : NetworkBehaviour
     public bool IsPlayerIndexConnected(int playerIndex)
     {
         return playerIndex < playerDataNetworkList.Count;
+    }
+    public PlayerData GetPlayerDataFromPlayerIndex(int playerIndex)
+    {
+        return playerDataNetworkList[playerIndex];
     }
 }
