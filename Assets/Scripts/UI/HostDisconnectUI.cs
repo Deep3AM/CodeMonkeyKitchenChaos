@@ -16,11 +16,11 @@ public class HostDisconnectUI : MonoBehaviour
     }
     private void Start()
     {
-        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManger_OnClientDisconnectCallback;
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
         Hide();
     }
 
-    private void NetworkManger_OnClientDisconnectCallback(ulong clientId)
+    private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
         if (clientId == NetworkManager.ServerClientId)
         {
@@ -37,5 +37,9 @@ public class HostDisconnectUI : MonoBehaviour
     private void Hide()
     {
         gameObject.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        NetworkManager.Singleton.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
     }
 }
