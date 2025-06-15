@@ -6,6 +6,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button createLobbyButton;
     [SerializeField] private Button quickJoinButton;
+    [SerializeField] private LobbyCreateUI lobbyCreateUI;
     private void Awake()
     {
         mainMenuButton.onClick.AddListener(() =>
@@ -14,7 +15,7 @@ public class LobbyUI : MonoBehaviour
         });
         createLobbyButton.onClick.AddListener(() =>
         {
-            KitchenGameLobby.Instance.CreateLobby("LobbyName", false);
+            lobbyCreateUI.Show();
         });
         quickJoinButton.onClick.AddListener(() =>
         {

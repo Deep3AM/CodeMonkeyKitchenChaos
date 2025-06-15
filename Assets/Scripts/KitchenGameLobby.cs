@@ -55,4 +55,8 @@ public class KitchenGameLobby : MonoBehaviour
         }
         
     }
+    public Lobby GetLobby()
+    {
+        return joinedLobby;
+    }
 }
